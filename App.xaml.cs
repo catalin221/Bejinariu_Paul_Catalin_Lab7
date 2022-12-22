@@ -1,11 +1,29 @@
-﻿namespace Bejinariu_Paul_Catalin_Lab7;
+﻿using Bejinariu_Paul_Catalin_Lab7.Data;
 
+namespace Bejinariu_Paul_Catalin_Lab7;
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
+    static ShoppingListDatabase database;
 
-		MainPage = new AppShell();
-	}
+    public static ShoppingListDatabase Database
+    {
+
+        get
+        {
+            if (database == null)
+            {
+                database = new ShoppingListDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ShoppingList.db3"));
+            }
+            return database;
+        }
+
+    }
+
+
+    public App()
+    {
+        InitializeComponent();
+
+        MainPage = new AppShell();
+    }
 }
